@@ -26,6 +26,12 @@
             </p>
           </div>
         </div>
+
+        <!-- Only showing when it's open -->
+        <div class="task-bg" v-if="isTaskOpen">
+          <!-- Nested route can display -->
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +41,12 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(['board'])
+  computed: {
+    ...mapState(['board']),
+    isTaskOpen() {
+      return this.$route.name === 'task'
+    }
+  }
 }
 </script>
 
