@@ -29,7 +29,8 @@
         </div>
 
         <!-- Only showing when it's open -->
-        <div class="task-bg" v-if="isTaskOpen">
+        <!-- The self modifier makes sure it is actually being clicked on -->
+        <div class="task-bg" v-if="isTaskOpen" @click.self="close">
           <!-- Nested route can display -->
           <router-view />
         </div>
@@ -52,6 +53,9 @@ export default {
     goToTask(task) {
       // Need to route to it. That allows us to show.
       this.$router.push({ name: 'task', params: { id: task } })
+    },
+    close() {
+      this.$router.push({ name: 'board' })
     }
   }
 }
