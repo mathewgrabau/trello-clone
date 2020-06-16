@@ -14,6 +14,7 @@
             class="task"
             v-for="(task, $taskIndex) of column.tasks"
             :key="$taskIndex"
+            @click="goToTask(task.id)"
           >
             <span class="w-full flex-no-shrink font-bold">
               {{ task.name }}
@@ -45,6 +46,12 @@ export default {
     ...mapState(['board']),
     isTaskOpen() {
       return this.$route.name === 'task'
+    }
+  },
+  methods: {
+    goToTask(task) {
+      // Need to route to it. That allows us to show.
+      this.$router.push({ name: 'task', params: { id: task } })
     }
   }
 }
